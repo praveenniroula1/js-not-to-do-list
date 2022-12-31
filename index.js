@@ -8,6 +8,7 @@ let taskData = [""];
 let hrsData = [""];
 
 let toDoList = [];
+let notToDoList = [];
 
 const handleOnSubmit = () => {
   taskName.addEventListener("change", () => {
@@ -23,15 +24,16 @@ const handleOnSubmit = () => {
     };
     let str = "";
     toDoList.push(data);
+
     toDoList.map((item, i) => {
       str += `<tr>
-     <th id="i" scope="row">${i}</th>
+     <th id="i" scope="row">${i + 1}</th>
      <td id="list">${item.taskData + " " + item.hrsData}</td>
      <td class="font">
        <button class="button2 bg-success">
          <i class="fa-solid fa-hand-point-right"></i>
        </button>
-       <button class="button2 bg-danger">
+       <button onclick="handleOnDelete(${i})"  class="button2 bg-danger">
          <i class="fa-sharp fa-solid fa-trash"></i>
        </button>
      </td>
@@ -41,3 +43,10 @@ const handleOnSubmit = () => {
   });
 };
 handleOnSubmit();
+
+// handling the delete button
+const handleOnDelete = (i) => {
+  const toDelete = toDoList.filter((item, index) => index !== i);
+  toDoList = toDelete;
+};
+handleOnDelete();
