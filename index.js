@@ -22,9 +22,9 @@ const handleOnSubmit = () => {
       taskData,
       hrsData,
     };
-    let str = "";
     toDoList.push(data);
 
+    let str = "";
     toDoList.map((item, i) => {
       str += `<tr>
      <th id="i" scope="row">${i + 1}</th>
@@ -47,6 +47,5 @@ handleOnSubmit();
 // handling the delete button
 const handleOnDelete = (i) => {
   const toDelete = toDoList.filter((item, index) => index !== i);
-  toDoList = toDelete;
 };
 handleOnDelete();
