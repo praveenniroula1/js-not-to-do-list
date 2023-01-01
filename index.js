@@ -61,7 +61,7 @@ handleOnSwitch();
 
 const handleOnSwitchBack = (i) => {
   const itemToSwitchBack = notToDoList.splice(i, 1);
-  notToDoList.push(itemToSwitchBack[0]);
   toDoList();
+  notToDoList.push(itemToSwitchBack[0]);
 };
 handleOnSwitchBack();
