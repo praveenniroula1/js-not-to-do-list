@@ -47,5 +47,13 @@ handleOnSubmit();
 // handling the delete button
 const handleOnDelete = (i) => {
   const toDelete = toDoList.filter((item, index) => index !== i);
+  toDoList = toDelete;
 };
 handleOnDelete();
+
+// handling the switch buttons
+const handleOnSwitch = (i) => {
+  const itemToSwitch = toDoList.splice(i, 1);
+  notToDoList.push(itemToSwitch[0]);
+  toDoList();
+};
