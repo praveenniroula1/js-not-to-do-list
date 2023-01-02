@@ -1,83 +1,49 @@
-const taskName = document.getElementById("taskName");
-const taskHrs = document.getElementById("taskHrs");
-const submit = document.getElementById("submit");
-const list = document.getElementById("list");
-const inn = document.getElementById("i");
+const formData = document.getElementById("form");
 
-let taskData = [""];
-let hrsData = [""];
+const taskData = document.getElementById("taskName");
+const hrsData = document.getElementById("taskHrs");
+const button = document.getElementById("button");
+const entryList = document.getElementById("entryList");
 
-let toDoList = [];
-let notToDoList = [];
+let taskDataValue = "";
+let hrsDataValue = "";
 
-function handleOnDelete(i) {
-  const filteredArray = toDoList.filter((item, index) => index !== i);
-  toDoList = filteredArray;
-  console.log(toDoList);
-}
-taskName.addEventListener("change", () => {
-  taskData = taskName.value;
-});
-taskHrs.addEventListener("change", () => {
-  hrsData = taskHrs.value;
-});
-submit.addEventListener("click", () => {
-  const data = {
-    taskData,
-    hrsData,
-  };
-  toDoList.push(data);
+let entryListArray = [];
 
-  let str = "";
-  toDoList.forEach((item, i) => {
-    str += `<tr>
-     <th id="i" scope="row">${i + 1}</th>
-     <td id="list">${item.taskData + " " + item.hrsData}</td>
-     <td class="font">
-       <button class="button2 bg-success">
-         <i class="fa-solid fa-hand-point-right"></i>
-       </button>
-       <button onclick="handleOnDelete(${i})"  class="button2 bg-danger">
-         <i class="fa-sharp fa-solid fa-trash"></i>
-       </button>
-     </td>
-   </tr>`;
-    document.getElementById("tbody").innerHTML = str;
+const handleOnSubmit = () => {
+  taskData.addEventListener("change", () => {
+    taskDataValue = taskData.value;
   });
-});
+  hrsData.addEventListener("change", () => {
+    hrsDataValue = hrsData.value;
+  });
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+    const data = {
+      taskDataValue,
+      hrsDataValue,
+    };
+    entryListArray.push(data);
+    display(entryListArray);
+  });
+};
 
-// handleOnSubmit();
+handleOnSubmit();
 
-// handling the delete button
+// making a static display
 
-//   toDoList.map((item, i) => {
-//     str += `<tr>
-//    <th id="i" scope="row">${i + 1}</th>
-//    <td id="list">${item.taskData + " " + item.hrsData}</td>
-//    <td class="font">
-//      <button class="button2 bg-success">
-//        <i class="fa-solid fa-hand-point-right"></i>
-//      </button>
-//      <button onclick="handleOnDelete(${i})"  class="button2 bg-danger">
-//        <i class="fa-sharp fa-solid fa-trash"></i>
-//      </button>
-//    </td>
-//  </tr>`;
-//     document.getElementById("tbody").innerHTML = str;
-//   });
-// };
-
-// // handling the switch buttons
-// const handleOnSwitch = (i) => {
-//   const itemToSwitch = toDoList.splice(i, 1);
-//   notToDoList.push(itemToSwitch[0]);
-//   toDoList();
-// };
-// handleOnSwitch();
-
-// const handleOnSwitchBack = (i) => {
-//   const itemToSwitchBack = notToDoList.splice(i, 1);
-//   notToDoList.push(itemToSwitchBack[0]);
-//   toDoList();
-// };
-// handleOnSwitchBack();
+const display = (eachTaskArray) => {
+  let str = "";
+  eachTaskArray.map((item, i) => {
+    str += `<tr>
+        <th scope="row">${i + 1}</th>
+        <td>${item.taskDataValue}</td>
+        <td>${item.hrsDataValue}</td>
+        <td>
+          <i class="fa-solid fa-arrow-down-long fs-3"></i>
+          <i class="fa-solid fa-trash fs-3"></i>
+        </td>
+      </tr>`;
+  });
+  document.getElementById("entryList").innerHTML = str;
+};
