@@ -40,9 +40,9 @@ const display = (eachTaskArray) => {
         <th scope="row">${i + 1}</th>
         <td>${item.taskDataValue}</td>
         <td>${item.hrsDataValue}</td>
-        <td>
-         <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-2 bg-success"></i></button> 
-         <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger "></i></button> 
+        <td >
+         <button  onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-2 bg-success"></i></button> 
+         <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
         </td>
       </tr>`;
   });
@@ -74,10 +74,25 @@ const displayBadList = (badList) => {
   <td>${item.taskDataValue}</td>
   <td>${item.hrsDataValue}</td>
   <td>
-   <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-up-long fs-2 bg-success "></i></button> 
-   <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger "></i></button> 
+   <button onclick="handleOnSwitchBack(${i})"><i class="fa-solid fa-arrow-up-long fs-2 bg-success "></i></button> 
+   <button onclick="handleOnDeleteBadList(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger "></i></button> 
   </td>
 </tr>`;
   });
   document.getElementById("badList").innerHTML = str;
+};
+
+// switch back to entryList
+const handleOnSwitchBack = (i) => {
+  const itemToSwitch = badListArray.splice(i, 1);
+  entryListArray.push(itemToSwitch[0]);
+  display(entryListArray);
+  displayBadList(badListArray);
+};
+
+// deleting from badlist
+const handleOnDeleteBadList = (i) => {
+  const filteredData = badListArray.filter((item, index) => index !== i);
+  badListArray = filteredData;
+  displayBadList(badListArray);
 };
