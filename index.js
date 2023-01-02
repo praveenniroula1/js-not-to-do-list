@@ -9,6 +9,7 @@ let taskDataValue = "";
 let hrsDataValue = "";
 
 let entryListArray = [];
+let badListArray = [];
 
 const handleOnSubmit = () => {
   taskData.addEventListener("change", () => {
@@ -40,10 +41,43 @@ const display = (eachTaskArray) => {
         <td>${item.taskDataValue}</td>
         <td>${item.hrsDataValue}</td>
         <td>
-          <i class="fa-solid fa-arrow-down-long fs-3"></i>
-          <i class="fa-solid fa-trash fs-3"></i>
+         <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-4 bg-success p-2"></i></button> 
+         <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-4 bg-danger p-2"></i></button> 
         </td>
       </tr>`;
   });
   document.getElementById("entryList").innerHTML = str;
+};
+
+// handling the delete buttons
+const handleOnDelete = (i) => {
+  const filteredArray = entryListArray.filter((item, index) => index !== i);
+  entryListArray = filteredArray;
+  display(entryListArray);
+};
+
+// switch the bad list
+
+const handleOnSwitch = (i) => {
+  const itemToSwitch = entryListArray.splice(i, 1);
+  badListArray.push(itemToSwitch[0]);
+  display(entryListArray);
+  displayBadList(badListArray);
+};
+
+// displaying on bad list
+const displayBadList = (badList) => {
+  let str = "";
+  badList.map((item, i) => {
+    str += `<tr>
+  <th scope="row">${i + 1}</th>
+  <td>${item.taskDataValue}</td>
+  <td>${item.hrsDataValue}</td>
+  <td>
+   <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-up-long fs-4 bg-success p-2"></i></button> 
+   <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-4 bg-danger p-2"></i></button> 
+  </td>
+</tr>`;
+  });
+  document.getElementById("badList").innerHTML = str;
 };
