@@ -41,8 +41,8 @@ const display = (eachTaskArray) => {
         <td>${item.taskDataValue}</td>
         <td>${item.hrsDataValue}</td>
         <td>
-         <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-4 bg-success p-2"></i></button> 
-         <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-4 bg-danger p-2"></i></button> 
+         <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-2 bg-success"></i></button> 
+         <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger "></i></button> 
         </td>
       </tr>`;
   });
@@ -74,8 +74,8 @@ const displayBadList = (badList) => {
   <td>${item.taskDataValue}</td>
   <td>${item.hrsDataValue}</td>
   <td>
-   <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-up-long fs-4 bg-success p-2"></i></button> 
-   <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-4 bg-danger p-2"></i></button> 
+   <button onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-up-long fs-2 bg-success "></i></button> 
+   <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger "></i></button> 
   </td>
 </tr>`;
   });
