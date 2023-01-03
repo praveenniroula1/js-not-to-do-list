@@ -137,19 +137,19 @@ const entryListHrsData = () => {
 };
 
 // bad hours calculating
-const badListHrsData = () => {
-  const calcHrs = eachHours.reduce(
-    (total, num) => parseInt(total) + parseInt(num)
-  );
-  // document.getElementById("total").innerText = calcHrs;
-  let str2 = "";
-  str2 += `<table class="table container">
- 
-    <tr>
-      <th scope="col">Total time allocated for task: ${calcHrs} Hrs.</th>
-    </tr>
-  
-  </table>`;
-  document.getElementById("entryListHrs1").innerHTML = str2;
-  console.log(calcHrs);
-};
+// const badListHrsData = () => {
+//   const calcHrs = eachHours.reduce(
+//     (total, num) => parseInt(total) + parseInt(num)
+//   );
+//   // document.getElementById("total").innerText = calcHrs;
+//   let str2 = "";
+//   str2 += `<table class="table container">
+
+//     <tr>
+//       <th scope="col">Total time allocated for task: ${calcHrs} Hrs.</th>
+//     </tr>
+
+//   </table>`;
+//   document.getElementById("entryListHrs1").innerHTML = str2;
+//   console.log(calcHrs);
+// };
