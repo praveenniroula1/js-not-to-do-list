@@ -24,8 +24,17 @@ const handleOnSubmit = () => {
       taskDataValue,
       hrsDataValue,
     };
-    entryListArray.push(data);
-    display(entryListArray);
+
+    if (!taskData.value && !hrsData.value) {
+      return alert("fill the form");
+    } else {
+      entryListArray.push(data);
+      display(entryListArray);
+      taskData.value = "";
+      hrsData.value = "";
+      taskDataValue = "";
+      hrsDataValue = "";
+    }
   });
 };
 
@@ -41,8 +50,8 @@ const display = (eachTaskArray) => {
         <td>${item.taskDataValue}</td>
         <td>${item.hrsDataValue}</td>
         <td >
-         <button  onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-2 bg-success"></i></button> 
-         <button onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
+         <button class="bg-success"   onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-2 bg-success"></i></button> 
+         <button class="bg-danger"  onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
         </td>
       </tr>`;
   });
@@ -74,8 +83,8 @@ const displayBadList = (badList) => {
   <td>${item.taskDataValue}</td>
   <td>${item.hrsDataValue}</td>
   <td>
-   <button onclick="handleOnSwitchBack(${i})"><i class="fa-solid fa-arrow-up-long fs-2 bg-success "></i></button> 
-   <button onclick="handleOnDeleteBadList(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger "></i></button> 
+   <button class="bg-success" onclick="handleOnSwitchBack(${i})"><i class="fa-solid fa-arrow-up fs-2 bg-success"></i></button> 
+   <button class="bg-danger" onclick="handleOnDeleteBadList(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
   </td>
 </tr>`;
   });
