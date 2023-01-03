@@ -48,7 +48,7 @@ const display = (eachTaskArray) => {
     str += `<tr>
         <th scope="row">${i + 1}</th>
         <td>${item.taskDataValue}</td>
-        <td>${item.hrsDataValue}</td>
+        <td>${item.hrsDataValue + " " + "Hrs."}</td>
         <td >
          <button class="bg-success"   onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-2 bg-success"></i></button> 
          <button class="bg-danger"  onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
@@ -81,7 +81,7 @@ const displayBadList = (badList) => {
     str += `<tr>
   <th scope="row">${i + 1}</th>
   <td>${item.taskDataValue}</td>
-  <td>${item.hrsDataValue}</td>
+  <td>${item.hrsDataValue + " " + "Hrs."}</td>
   <td>
    <button class="bg-success" onclick="handleOnSwitchBack(${i})"><i class="fa-solid fa-arrow-up fs-2 bg-success"></i></button> 
    <button class="bg-danger" onclick="handleOnDeleteBadList(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
