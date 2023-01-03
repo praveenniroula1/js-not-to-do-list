@@ -14,6 +14,7 @@ let badListArray = [];
 
 let totalHrs = 24 * 7;
 let eachHours = [];
+let eachBadHours = [];
 
 const handleOnSubmit = () => {
   taskData.addEventListener("change", () => {
@@ -29,6 +30,7 @@ const handleOnSubmit = () => {
       hrsDataValue,
     };
     eachHours.push(hrsDataValue);
+    eachBadHours.push(hrsDataValue);
     if (!taskData.value && !hrsData.value) {
       return alert("fill the form");
     } else {
@@ -77,6 +79,7 @@ const handleOnDelete = (i) => {
 const handleOnSwitch = (i) => {
   const itemToSwitch = entryListArray.splice(i, 1);
   badListArray.push(itemToSwitch[0]);
+
   display(entryListArray);
   displayBadList(badListArray);
 };
@@ -116,17 +119,19 @@ const handleOnDeleteBadList = (i) => {
 };
 
 // calculating the hours
-// const entryListHrsData = () => {
-//   const calcHrs = eachHours.reduce(
-//     (total, num) => parseInt(total) + parseInt(num)
-//   );
-//   document.getElementById("total").innerText = calcHrs;
-// };
-
 const entryListHrsData = () => {
-  const totalHrs = entryListArray.reduce(
-    (item, index) => item + index.hrsDataValue,
-    0
+  const calcHrs = eachHours.reduce(
+    (total, num) => parseInt(total) + parseInt(num)
   );
-  console.log(totalHrs);
+  // document.getElementById("total").innerText = calcHrs;
+  let str2 = "";
+  str2 += `<table class="table container">
+ 
+    <tr>
+      <th scope="col">Total time allocated for task: ${calcHrs} Hrs.</th>
+    </tr>
+  
+  </table>`;
+  document.getElementById("entryListHrs1").innerHTML = str2;
+  console.log(calcHrs);
 };
