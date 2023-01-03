@@ -13,6 +13,7 @@ let entryListArray = [];
 let badListArray = [];
 
 let totalHrs = 24 * 7;
+let eachHours = [];
 
 const handleOnSubmit = () => {
   taskData.addEventListener("change", () => {
@@ -27,7 +28,7 @@ const handleOnSubmit = () => {
       taskDataValue,
       hrsDataValue,
     };
-
+    eachHours.push(hrsDataValue);
     if (!taskData.value && !hrsData.value) {
       return alert("fill the form");
     } else {
@@ -37,6 +38,7 @@ const handleOnSubmit = () => {
       hrsData.value = "";
       taskDataValue = "";
       hrsDataValue = "";
+      entryListHrsData();
     }
   });
 };
@@ -113,14 +115,18 @@ const handleOnDeleteBadList = (i) => {
   displayBadList(badListArray);
 };
 
-// caqlculating each total times
-// const getTotalHrs = () => {
-//   const totalEntryList = entryListArray.reduce(
-//     (i, index) => i + index.hrsDataValue
+// calculating the hours
+// const entryListHrsData = () => {
+//   const calcHrs = eachHours.reduce(
+//     (total, num) => parseInt(total) + parseInt(num)
 //   );
-//   const totalBadList = entryListArray.reduce(
-//     (i, index) => i + index.hrsDataValue
-//   );
-//   const total = totalEntryList + totalBadList;
-//   return total;
+//   document.getElementById("total").innerText = calcHrs;
 // };
+
+const entryListHrsData = () => {
+  const totalHrs = entryListArray.reduce(
+    (item, index) => item + index.hrsDataValue,
+    0
+  );
+  console.log(totalHrs);
+};
