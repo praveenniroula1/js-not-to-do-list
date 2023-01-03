@@ -4,12 +4,15 @@ const taskData = document.getElementById("taskName");
 const hrsData = document.getElementById("taskHrs");
 const button = document.getElementById("button");
 const entryList = document.getElementById("entryList");
+const ttl = document.getElementById("ttl");
 
 let taskDataValue = "";
 let hrsDataValue = "";
 
 let entryListArray = [];
 let badListArray = [];
+
+let totalHrs = 24 * 7;
 
 const handleOnSubmit = () => {
   taskData.addEventListener("change", () => {
@@ -53,8 +56,10 @@ const display = (eachTaskArray) => {
          <button class="bg-success"   onclick="handleOnSwitch(${i})"><i class="fa-solid fa-arrow-down-long fs-2 bg-success"></i></button> 
          <button class="bg-danger"  onclick="handleOnDelete(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
         </td>
-      </tr>`;
+      </tr>
+      `;
   });
+
   document.getElementById("entryList").innerHTML = str;
 };
 
@@ -82,11 +87,13 @@ const displayBadList = (badList) => {
   <th scope="row">${i + 1}</th>
   <td>${item.taskDataValue}</td>
   <td>${item.hrsDataValue + " " + "Hrs."}</td>
+  
   <td>
    <button class="bg-success" onclick="handleOnSwitchBack(${i})"><i class="fa-solid fa-arrow-up fs-2 bg-success"></i></button> 
    <button class="bg-danger" onclick="handleOnDeleteBadList(${i})"><i  class="fa-solid fa-trash fs-2 bg-danger"></i></button> 
   </td>
-</tr>`;
+</tr>
+`;
   });
   document.getElementById("badList").innerHTML = str;
 };
@@ -105,3 +112,15 @@ const handleOnDeleteBadList = (i) => {
   badListArray = filteredData;
   displayBadList(badListArray);
 };
+
+// caqlculating each total times
+// const getTotalHrs = () => {
+//   const totalEntryList = entryListArray.reduce(
+//     (i, index) => i + index.hrsDataValue
+//   );
+//   const totalBadList = entryListArray.reduce(
+//     (i, index) => i + index.hrsDataValue
+//   );
+//   const total = totalEntryList + totalBadList;
+//   return total;
+// };
