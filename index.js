@@ -30,7 +30,7 @@ const handleOnSubmit = () => {
       hrsDataValue,
     };
     eachHours.push(hrsDataValue);
-    eachBadHours.push(hrsDataValue);
+    eachBadHours.push(badListArray.hrsDataValue);
     if (!taskData.value && !hrsData.value) {
       return alert("fill the form");
     } else {
@@ -139,7 +139,7 @@ const entryListHrsData = () => {
 
 // bad hours calculating
 const badListHrsData = () => {
-  const calcHrs = eachHours.reduce(
+  const calcHrs2 = eachHours.reduce(
     (total, num) => parseInt(total) + parseInt(num)
   );
   // document.getElementById("total").innerText = calcHrs;
@@ -147,7 +147,7 @@ const badListHrsData = () => {
   str2 += `<table class="table container">
 
     <tr>
-      <th scope="col">Total time allocated for task: ${calcHrs} Hrs.</th>
+      <th scope="col">Total time allocated for task: ${calcHrs2} Hrs.</th>
     </tr>
 
   </table>`;
