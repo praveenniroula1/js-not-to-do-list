@@ -82,6 +82,7 @@ const handleOnSwitch = (i) => {
 
   display(entryListArray);
   displayBadList(badListArray);
+  badListHrsData(badListArray);
 };
 
 // displaying on bad list
@@ -150,6 +151,6 @@ const badListHrsData = () => {
     </tr>
 
   </table>`;
-  document.getElementById("entryListHrs1").innerHTML = str2;
+  document.getElementById("badListHrsData2").innerHTML = str2;
   console.log(calcHrs);
 };
