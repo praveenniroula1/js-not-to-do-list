@@ -30,7 +30,6 @@ const handleOnSubmit = () => {
       hrsDataValue,
     };
     eachHours.push(hrsDataValue);
-    eachBadHours.push(badListArray.hrsDataValue);
     if (!taskData.value && !hrsData.value) {
       return alert("fill the form");
     } else {
@@ -79,10 +78,16 @@ const handleOnDelete = (i) => {
 const handleOnSwitch = (i) => {
   const itemToSwitch = entryListArray.splice(i, 1);
   badListArray.push(itemToSwitch[0]);
-
+  console.log(eachHours);
+  eachBadHours.push(itemToSwitch[0].hrsDataValue);
   display(entryListArray);
   displayBadList(badListArray);
   badListHrsData(badListArray);
+  eachHours = eachHours.filter(
+    (item, index) => item != itemToSwitch[0].hrsDataValue
+  );
+  entryListHrsData();
+  console.log(eachHours);
 };
 
 // displaying on bad list
@@ -122,7 +127,8 @@ const handleOnDeleteBadList = (i) => {
 // calculating the hours
 const entryListHrsData = () => {
   const calcHrs = eachHours.reduce(
-    (total, num) => parseInt(total) + parseInt(num)
+    (total, num) => parseInt(total) + parseInt(num),
+    0
   );
   // document.getElementById("total").innerText = calcHrs;
   let str2 = "";
@@ -139,10 +145,10 @@ const entryListHrsData = () => {
 
 // bad hours calculating
 const badListHrsData = () => {
-  const calcHrs2 = eachHours.reduce(
+  const calcHrs2 = eachBadHours.reduce(
     (total, num) => parseInt(total) + parseInt(num)
   );
-  // document.getElementById("total").innerText = calcHrs;
+
   let str2 = "";
   str2 += `<table class="table container">
 
@@ -152,5 +158,4 @@ const badListHrsData = () => {
 
   </table>`;
   document.getElementById("badListHrsData2").innerHTML = str2;
-  console.log(calcHrs);
 };
