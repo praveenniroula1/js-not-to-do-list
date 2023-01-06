@@ -29,7 +29,7 @@ const handleOnSubmit = () => {
       taskDataValue,
       hrsDataValue,
     };
-    eachHours.push(hrsDataValue);
+    // eachHours.push(hrsDataValue);
     if (!taskData.value && !hrsData.value) {
       return alert("fill the form");
     } else {
@@ -39,7 +39,7 @@ const handleOnSubmit = () => {
       hrsData.value = "";
       taskDataValue = "";
       hrsDataValue = "";
-      entryListHrsData();
+      gettotalhours();
     }
   });
 };
@@ -82,12 +82,8 @@ const handleOnSwitch = (i) => {
   eachBadHours.push(itemToSwitch[0].hrsDataValue);
   display(entryListArray);
   displayBadList(badListArray);
-  badListHrsData(badListArray);
-  eachHours = eachHours.filter(
-    (item, index) => item != itemToSwitch[0].hrsDataValue
-  );
-  entryListHrsData();
-  console.log(eachHours);
+  // badListHrsData(badListArray);
+  gettotalhours();
 };
 
 // displaying on bad list
@@ -125,37 +121,54 @@ const handleOnDeleteBadList = (i) => {
 };
 
 // calculating the hours
-const entryListHrsData = () => {
-  const calcHrs = eachHours.reduce(
-    (total, num) => parseInt(total) + parseInt(num),
+// const entryListHrsData = () => {
+//   const calcHrs = eachHours.reduce(
+//     (total, num) => parseInt(total) + parseInt(num),
+//     0
+//   );
+//   // document.getElementById("total").innerText = calcHrs;
+//   let str2 = "";
+//   str2 += `<table class="table container">
+
+//     <tr>
+//       <th scope="col">Total time allocated for task: ${calcHrs} Hrs.</th>
+//     </tr>
+
+//   </table>`;
+//   document.getElementById("entryListHrs1").innerHTML = str2;
+//   console.log(calcHrs);
+// };
+
+// // bad hours calculating
+// const badListHrsData = () => {
+//   const calcHrs2 = eachBadHours.reduce(
+//     (total, num) => parseInt(total) + parseInt(num)
+//   );
+
+//   let str2 = "";
+//   str2 += `<table class="table container">
+
+//     <tr>
+//       <th scope="col">Total time allocated for task: ${calcHrs2} Hrs.</th>
+//     </tr>
+
+//   </table>`;
+//   document.getElementById("badListHrsData2").innerHTML = str2;
+// };
+
+const gettotalhours = () => {
+  const totalentrylist = entryListArray.reduce(
+    (acc, item) => parseInt(acc) + parseInt(item.hrsDataValue),
     0
   );
-  // document.getElementById("total").innerText = calcHrs;
-  let str2 = "";
-  str2 += `<table class="table container">
- 
-    <tr>
-      <th scope="col">Total time allocated for task: ${calcHrs} Hrs.</th>
-    </tr>
-  
-  </table>`;
-  document.getElementById("entryListHrs1").innerHTML = str2;
-  console.log(calcHrs);
-};
-
-// bad hours calculating
-const badListHrsData = () => {
-  const calcHrs2 = eachBadHours.reduce(
-    (total, num) => parseInt(total) + parseInt(num)
+  const totalbadlist = badListArray.reduce(
+    (acc, item) => parseInt(acc) + parseInt(item.hrsDataValue),
+    0
   );
-
-  let str2 = "";
-  str2 += `<table class="table container">
-
-    <tr>
-      <th scope="col">Total time allocated for task: ${calcHrs2} Hrs.</th>
-    </tr>
-
-  </table>`;
-  document.getElementById("badListHrsData2").innerHTML = str2;
+  const total = totalbadlist + totalentrylist;
+  console.log(total);
+  document.getElementById("totalhours").innerText = total;
+  document.getElementById("entrylist3").innerText = totalentrylist;
+  document.getElementById("badlist3").innerText = totalbadlist;
+  return total;
 };
