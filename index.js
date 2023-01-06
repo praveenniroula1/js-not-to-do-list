@@ -71,6 +71,7 @@ const handleOnDelete = (i) => {
   const filteredArray = entryListArray.filter((item, index) => index !== i);
   entryListArray = filteredArray;
   display(entryListArray);
+  gettotalhours();
 };
 
 // switch the bad list
@@ -111,6 +112,7 @@ const handleOnSwitchBack = (i) => {
   entryListArray.push(itemToSwitch[0]);
   display(entryListArray);
   displayBadList(badListArray);
+  gettotalhours();
 };
 
 // deleting from badlist
@@ -118,6 +120,7 @@ const handleOnDeleteBadList = (i) => {
   const filteredData = badListArray.filter((item, index) => index !== i);
   badListArray = filteredData;
   displayBadList(badListArray);
+  gettotalhours();
 };
 
 // calculating the hours
@@ -167,8 +170,42 @@ const gettotalhours = () => {
   );
   const total = totalbadlist + totalentrylist;
   console.log(total);
-  document.getElementById("totalhours").innerText = total;
-  document.getElementById("entrylist3").innerText = totalentrylist;
-  document.getElementById("badlist3").innerText = totalbadlist;
+
+  // entrylist
+  let entryStr = "";
+  entryStr += `<table class="table container">
+
+    <tr>
+      <th scope="col">Total time allocated for task: ${totalentrylist} Hrs.</th>
+    </tr>
+
+  </table>`;
+  document.getElementById("entryListData1").innerHTML = entryStr;
+
+  // completed
+  let badStr = "";
+  badStr += `<table class="table container">
+
+    <tr>
+      <th  scope="col">Total time completing for task: ${totalbadlist} Hrs.</th>
+    </tr>
+
+  </table>`;
+  document.getElementById("badListData1").innerHTML = badStr;
+
+  // total
+  let totalStr = "";
+  totalStr += `<table class="table container">
+
+    <tr class="ttl1">
+      <th class="text" scope="col">Total time : ${total} Hrs.</th>
+    </tr>
+
+  </table>`;
+  document.getElementById("totalHour").innerHTML = totalStr;
+
+  // document.getElementById("totalhours").innerText = total;
+  // document.getElementById("entrylist3").innerText = totalentrylist;
+  // document.getElementById("badlist3").innerText = totalbadlist;
   return total;
 };

@@ -38,3 +38,22 @@ label {
 h5 {
   text-align: center;
 }
+/* #totalHour {
+  color: aquamarine;
+  text-align: end;
+  border: 2px solid black;
+  display: flex;
+  justify-content: flex-end;
+} */
+
+#totalHour {
+  border: 2px solid rgb(236, 63, 63);
+  height: 9vh;
+  background-color: red;
+}
+.text {
+  padding: 1rem;
+}
+.ttl1 {
+  border-radius: 50px;
+}
